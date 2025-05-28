@@ -1,0 +1,25 @@
+<app-navbar />
+<div class="container pt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Name </th>
+                <th> Email </th>
+                <th> Action </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of studentList">
+                <td> {{student.id}} </td>
+                <td> {{student.name}} </td>
+                <td> {{student.email}} </td>
+                <td class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline-warning btn-sm">Update</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

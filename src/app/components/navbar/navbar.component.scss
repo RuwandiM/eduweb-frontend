@@ -1,0 +1,12 @@
+.nav-text {
+    text-decoration: none;
+    color: #021933;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 20px;
+
+    &.active {
+        color:darkorange;
+        font-weight: bold;
+    }
+}
