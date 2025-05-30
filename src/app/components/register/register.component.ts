@@ -4,21 +4,23 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   imports: [FormsModule, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-  standalone: true,
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss'
 })
-export class LoginComponent {
+export class RegisterComponent {
+
+  name='';
   email = '';
   password = '';
+  confirmPassword = '';
 
   constructor(private router: Router) {}
 
-  login() {
-    if (this.email === 'ruwandimayunika01@gmail.com' && this.password === '123') {
-      this.router.navigate(['/student']);
+  register() {
+    if (true) {
+      this.router.navigate(['/']);
     } else {
       alert('Invalid credentials');
     }
