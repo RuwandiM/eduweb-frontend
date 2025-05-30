@@ -6,7 +6,8 @@
                 <th> ID </th>
                 <th> Name </th>
                 <th> Email </th>
-                <th> Action </th>
+                <th> Class Details</th>
+                <th> Actions </th>
             </tr>
         </thead>
         <tbody>
@@ -14,9 +15,10 @@
                 <td> {{student.id}} </td>
                 <td> {{student.name}} </td>
                 <td> {{student.email}} </td>
-                <td class="d-flex gap-2">
-                    <button type="button" class="btn btn-outline-warning btn-sm">Update</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                <td>Physics, Maths, IT</td>
+                <td class="d-flex gap-3">
+                    <button type="button" class="updatebtn">Update</button>
+                    <button type="button" class="deletebtn">Delete</button>
                 </td>
             </tr>
         </tbody>
