@@ -33,7 +33,7 @@ export class RegisterComponent {
       password: SHA256(this.password).toString(),
       role: 1,
     };
-    this.http.post('http://localhost:8080/user', user)
+    this.http.post('http://localhost:8080/user/register', user)
       .subscribe({
         next: (res) => {
           console.log('User created successfully:', res);
