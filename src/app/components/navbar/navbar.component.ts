@@ -14,7 +14,14 @@ import { CommonModule } from '@angular/common';
 export class NavbarComponent {
 
   constructor(private router: Router) {}
-  // user = localStorage.getItem('user');
+  user: any;
+
+  ngOnInit() {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+    }
+  }
 
   logout() {
     localStorage.removeItem('user');
