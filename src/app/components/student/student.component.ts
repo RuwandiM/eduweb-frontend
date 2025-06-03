@@ -27,7 +27,7 @@ export class StudentComponent implements OnInit {
 
   getAllStudents() {
     this.http.get('http://localhost:8080/student').subscribe((res: any) => {
-      this.studentList = res;
+      this.studentList = res.data;
     });
     console.log(this.studentList);
   }

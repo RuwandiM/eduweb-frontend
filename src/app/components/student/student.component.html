@@ -11,8 +11,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let student of studentList">
-                <td> {{student.id}} </td>
+            <tr *ngFor="let student of studentList; let i = index">
+                <td> #{{ i+1 }} </td>
                 <td> {{student.name}} </td>
                 <td> {{student.email}} </td>
                 <td>Physics, Maths, IT</td>
