@@ -27,6 +27,31 @@
     font-size: 14px;
 }
 
-.login-btn {
+.btn {
     background-color: #123458;
+    color: white;
 }
+
+.btn:focus,
+.btn:active {
+  background-color: #123458 !important;
+  color: white !important;
+}
+
+.form-select option {
+    font-size: 12px;
+}
+
+.form-select option:hover {
+    background-color: red;
+}
+
+.form-select {
+    font-size: 14px;
+}
+
+.form-check-label  {
+    font-size: 13px;
+}
+
+

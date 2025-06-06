@@ -1,12 +1,102 @@
 <app-navbar />
+<div 
+  class="alert d-flex flex-column position-absolute" 
+  [ngClass]="successmsg ? 'alert-success' : 'alert-danger'" 
+  role="alert" 
+  *ngIf="showAlert"
+>
+    <div class="d-flex align-items-center justify-content-between">
+        <span class="alert-text">{{ alertMessage }}</span>
+        <button type="button" class="close-btn" aria-label="Close" (click)="closeAlert()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
 <div class="container pt-5">
+    <button type="button" class="btn mb-4 text-white" style="font-size: 13px;" (click)="openAddStudentModal()">Add Student</button>
+    <div class="modal show d-block" *ngIf="addStudentModalOpen || updateStudentModalOpen" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-6 fw-bold">{{ addStudentModalOpen ? 'Add Student' : 'Update Student' }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="addStudentModalOpen ? colseAddStudentModal() : closeUpdateStudentModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" [(ngModel)]="student.name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label form-label">Email:</label>
+                        <input type="text" class="form-control" id="email" [(ngModel)]="student.email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stream" class="col-form-label form-label">Subject Stream:</label>
+                        <select class="form-select custom-select" [(ngModel)]="student.stream" name="stream" required>
+                            <option *ngFor="let stream of subj_streams" [value]="stream">{{stream}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="col-form-label form-label">Subjects:</label>
+                        <div class=" container text-left">
+                            <div class="row row-cols-3">
+                                <div class="form-check" *ngFor="let subject of subjects">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        [value]="subject"
+                                        [checked]="student.subjects.includes(subject)"
+                                        (change)="onSubjectChange($event, subject)"
+                                        [id]="subject"
+                                        name="subjects"
+                                    />
+                                    <label class="form-check-label" [for]="subject">
+                                        {{ subject }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="addStudentModalOpen ? addStudent() : updateStudent()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal show d-block" *ngIf="deleteStudentModalOpen" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-6 fw-bold">Delete Student</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeDeleteStudentModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this student?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn delete-button" (click)="deleteStudent()">Delete</button>
+                    <button type="button" class="btn cancel-button" (click)="closeDeleteStudentModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <table class="table">
         <thead>
             <tr>
                 <th> ID </th>
                 <th> Name </th>
                 <th> Email </th>
-                <th> Class Details</th>
+                <th> Stream </th>
+                <th> Subjects </th>
                 <th> Actions </th>
             </tr>
         </thead>
@@ -15,13 +105,19 @@
                 <td> #{{ i+1 }} </td>
                 <td> {{student.name}} </td>
                 <td> {{student.email}} </td>
-                <td>Physics, Maths, IT</td>
+                <td> {{student.stream}} </td>
+                <td>
+                    <span *ngFor="let subject of student.subjects; let j = index">
+                        {{subject}}<span *ngIf="j < student.subjects.length - 1">, </span>
+                    </span>
+                </td>
                 <td class="d-flex gap-3">
-                    <button type="button" class="updatebtn">Update</button>
-                    <button type="button" class="deletebtn">Delete</button>
+                    <button type="button" class="updatebtn" (click)="openUpdateStudentModal(student.id)">Update</button>
+                    <button type="button" class="deletebtn" (click)="openDeleteStudentModal(student.id)">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
+
 </div>
 

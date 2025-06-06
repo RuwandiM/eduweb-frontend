@@ -1,0 +1,31 @@
+.modal {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-body {
+    font-size: 13px;
+}
+
+.cancel-button {
+    background-color: #7a7271 !important;
+    color: white;
+    font-size: 13px;
+}
+
+.delete-button {
+    background-color: #d9534f !important;
+    color: white;
+    font-size: 13px;
+}
+
+.cancel-button:focus,
+.cancel-button:active {
+  background-color: #5b5554 !important;
+  color: white !important;
+}
+
+.delete-button:focus,
+.delete-button:active {
+  background-color: #c9302c !important;
+  color: white !important;
+}   
